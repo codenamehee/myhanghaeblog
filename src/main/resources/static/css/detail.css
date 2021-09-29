@@ -1,0 +1,98 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+* {
+    font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', sans-serif;
+}
+
+
+.background-header {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    width: 100%;
+    height: 250px;
+    background-color: #f6f7f8;
+}
+
+.background-body {
+    position: fixed;
+    z-index: -1;
+    top: 250px;
+    height: 100%;
+    width: 100%;
+    background-color: #dee2e6;
+}
+
+.wrap {
+    width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+    /*position: fixed;*/
+}
+
+.writing-header h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 33px;
+    /*width: 1000px;*/
+    font-size: 40px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.79;
+    letter-spacing: -0.5px;
+    /*text-align: center;*/
+    color: #343a40;
+}
+
+.writing-header p {
+    margin: 20px auto 30px auto;
+    /*width: 217px;*/
+    height: 48px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.12px;
+    text-align: left;
+    color: #636467;
+}
+
+.contents-box {
+    width: 700px;
+    margin: 100px auto 30px auto;
+}
+
+.input-group {
+    margin-top: 30px;
+    height: 40px;
+}
+
+.form-floating {
+    margin-top: 30px;
+    height: 200px;
+}
+
+.btn {
+    width: 300px;
+    margin: auto;
+}
+
+.page-name {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 33px;
+    font-size: 30px;
+    /*font-weight: 500;*/
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.79;
+    letter-spacing: -0.5px;
+    /*text-align: center;*/
+    color: #343a40;
+}
+
+.end-button {
+    width: 400px;
+    margin: 20px 550px;
+}
