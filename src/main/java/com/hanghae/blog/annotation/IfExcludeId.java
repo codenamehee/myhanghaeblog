@@ -9,13 +9,13 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PWValidator.class)
 @Documented
 public @interface IfExcludeId {
-    String value() default "username";
-
-    String message() default "Password is not allow";
-
+    // 어노테이션에 들어올 값
+//    String value() default "username";
+    // 오류시에 나올 메시지
+    String message() default "";
+    // 어떤 유효성 검증 범위에 소속되게 할 지 정의하는 것
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-//    Class[] groups() default {};
-//    Class[] payload() default {};
+
 }

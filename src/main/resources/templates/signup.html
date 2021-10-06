@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<!--<html lang="en">-->
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>회원 가입</title>
     <meta charset="UTF-8">
@@ -53,7 +53,7 @@
 
         .nickname-ok {
             color: #1e90ff;
-            display: none;
+            /*display: none;*/
         }
 
         .password1-check {
@@ -68,7 +68,7 @@
 
         .password1-ok {
             color: #1e90ff;
-            display: none;
+            /*display: none;*/
         }
 
         .password2-check {
@@ -83,7 +83,7 @@
 
         .password2-ok {
             color: #1e90ff;
-            display: none;
+            /*display: none;*/
         }
 
     </style>
@@ -111,32 +111,32 @@
         <div class="title-box">
             <h2>회원 가입</h2>
         </div>
-        <form class = signup-form>
+        <form th:action="@{/user/signup}" method="post" modelAttribute="requestDto" class = signup-form>
             <div class="row mb-3">
                 <label for="nickname" class="col-sm-2 col-form-label">Nickname</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nickname" required oninput="">
-                    <span class = "nickname-check">알파벳 대소문자와 숫자로 구성된 최소 3자 이상의 닉네임을 입력해주세요.</span>
-                    <span class = "nickname-ok">사용 가능한 닉네임입니다.</span>
-                    <span class = "nickname-already">중복된 닉네임입니다.</span>
+                    <input th:value="${requestDto.username}" type="text" class="form-control" id="nickname" required oninput="">
+<!--                    <span class = "nickname-check">알파벳 대소문자와 숫자로 구성된 최소 3자 이상의 닉네임을 입력해주세요.</span>-->
+                    <span th:text="${valid_nickname}" class = "nickname-ok">사용 가능한 닉네임입니다.</span>
+<!--                    <span class = "nickname-already">중복된 닉네임입니다.</span>-->
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="password1" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password1">
-                    <span class = "password1-check">닉네임과 다른 값으로 이루어진 최소 4자 이상의 패스워드를 입력해주세요.</span>
-                    <span class = "password1-ok">사용 가능한 패스워드입니다.</span>
-                    <span class = "password1-already">닉네임과 같은 값이 포함되어 있어요!</span>
+                    <input th:value="${requestDto.password}" type="password" class="form-control" id="password1">
+<!--                    <span class = "password1-check">닉네임과 다른 값으로 이루어진 최소 4자 이상의 패스워드를 입력해주세요.</span>-->
+                    <span th:text="${valid_password}" class = "password1-ok">사용 가능한 패스워드입니다.</span>
+<!--                    <span class = "password1-already">닉네임과 같은 값이 포함되어 있어요!</span>-->
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="password2" class="col-sm-2 col-form-label">Confirm the Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password2">
-                    <span class = "password2-check">입력하신 비밀번호를 다시 한번 입력해주세요.</span>
-                    <span class = "password2-ok">비밀번호가 일치합니다.</span>
-                    <span class = "password2-already">비밀번호가 일치하지 않습니다!</span>
+                    <input th:value="${requestDto.password2}" type="password" class="form-control" id="password2">
+<!--                    <span class = "password2-check">입력하신 비밀번호를 다시 한번 입력해주세요.</span>-->
+                    <span th:text="${valid_password2}" class = "password2-ok">비밀번호가 일치합니다.</span>
+<!--                    <span class = "password2-already">비밀번호가 일치하지 않습니다!</span>-->
                 </div>
             </div>
         </form>
