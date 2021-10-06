@@ -1,8 +1,8 @@
 package com.hanghae.blog.service;
 
 import com.hanghae.blog.models.Posting;
-import com.hanghae.blog.models.PostingRepository;
-import com.hanghae.blog.models.PostingRequestDto;
+import com.hanghae.blog.repository.PostingRepository;
+import com.hanghae.blog.dto.PostingRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
