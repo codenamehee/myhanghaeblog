@@ -1,13 +1,14 @@
 package com.hanghae.blog.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hanghae.blog.dto.SignupRequestDto;
+import com.hanghae.blog.service.KakaoUserService;
 import com.hanghae.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,10 +20,12 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final KakaoUserService kakaoUserService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, KakaoUserService kakaoUserService) {
         this.userService = userService;
+        this.kakaoUserService = kakaoUserService;
     }
 
     // 회원가입을 위한 API -> 회원가입 버튼 클릭시 작동
@@ -59,14 +62,12 @@ public class UserController {
         return "login";
     }
 
-    //카카오 로그인
-//    @GetMapping("/user/kakao/callback")
-//    public String kakaoLogin(@RequestParam String code) {
-//        //authorizecode : 카카오로부터 받은 인가 코드
-//        userService.kakaoLogin(code);
-//
-//        return "redirect:/";
-//    }
+    // 카카오 로그인 콜백
+    @GetMapping("/user/kakao/callback")
+    public String kakaoLogin(@RequestParam String code) throws JsonProcessingException {
+        kakaoUserService.kakaoLogin(code);
+        return "redirect:/";
+    }
 
     // 로그인 처리 API
 //    @PostMapping("/user/login")

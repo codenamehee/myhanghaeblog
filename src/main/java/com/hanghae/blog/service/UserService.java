@@ -40,7 +40,7 @@ public class UserService {
     }
 
     // 회원가입 비즈니스 로직, void -> user로 리턴 타입 변경
-    public User registerUser(SignupRequestDto requestDto) {
+    public void registerUser(SignupRequestDto requestDto) {
 
         //nickname 중복 확인
         String username = requestDto.getUsername();
@@ -59,7 +59,7 @@ public class UserService {
 
         User user = new User(username, password);
         userRepository.save(user);
-        return user;
+//        return user;
     }
 
 }

@@ -24,12 +24,21 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    // 카카오 로그인을 위한 칼럼 추가
+    @Column(unique = true)
+    private Long kakaoId;
+
     public User(String username, String password){
         this.username = username;
         this.password = password;
+        this.kakaoId = null;
     }
 
-
+    public User(String username, String password, Long kakaoId){
+        this.username = username;
+        this.password = password;
+        this.kakaoId = kakaoId;
+    }
 }
 
 
