@@ -27,7 +27,7 @@ public class PWValidator implements ConstraintValidator<IfExcludeId, String> {
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
 
-        String nickname = requestDto.getNickname();
+        String nickname = requestDto.getUsername();
         // password가 username을 포함하고 있으면 false return하기
         return !password.contains(nickname);
     }

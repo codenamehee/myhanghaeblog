@@ -55,7 +55,23 @@ public class UserController {
 
     // 로그인 API
     @GetMapping("/user/login")
-    public String login() {
+    public String loginPage() {
         return "login";
     }
+
+    //카카오 로그인
+//    @GetMapping("/user/kakao/callback")
+//    public String kakaoLogin(@RequestParam String code) {
+//        //authorizecode : 카카오로부터 받은 인가 코드
+//        userService.kakaoLogin(code);
+//
+//        return "redirect:/";
+//    }
+
+    // 로그인 처리 API
+//    @PostMapping("/user/login")
+//    public String loginprocess(@RequestParam String nickname, @RequestParam String password, Model model){
+//        if(nickname.equals(password)){}
+//        return "index";
+//    }
 }

@@ -36,16 +36,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/user/**").permitAll()
+                .antMatchers("/index/**").permitAll()
+                .antMatchers("/detail.html").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
+                .antMatchers("*").permitAll()
 //                .antMatchers("/").permitAll()
                 //어떤 요청이든 '인증'
                 .anyRequest().authenticated()
                 .and()
                     //로그인 기능 허용
                     .formLogin()
+                    // 로그인 view 제공
                     .loginPage("/user/login")
+                    // 로그인 처리 (Post/user/login)
                     .loginProcessingUrl("/user/login")
-                    // '/'로 접근하면 '/user/login'으로 이동
+                    // 로그인 처리 성공 시 URL
                     .defaultSuccessUrl("/")
+                    // 로그인 처리 후 실패 시 URL
                     .failureUrl("/user/login?error")
                     .permitAll()
                 .and()

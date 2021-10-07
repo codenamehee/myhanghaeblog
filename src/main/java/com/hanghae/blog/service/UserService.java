@@ -1,5 +1,6 @@
 package com.hanghae.blog.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hanghae.blog.dto.SignupRequestDto;
 import com.hanghae.blog.models.User;
 import com.hanghae.blog.repository.UserRepository;
@@ -38,12 +39,12 @@ public class UserService {
         return validatorResult;
     }
 
-    // 회원가입 비즈니스 로직
-    public void registerUser(SignupRequestDto requestDto) {
+    // 회원가입 비즈니스 로직, void -> user로 리턴 타입 변경
+    public User registerUser(SignupRequestDto requestDto) {
 
         //nickname 중복 확인
-        String nickname = requestDto.getNickname();
-        Optional<User> found = userRepository.findByNickname(nickname);
+        String username = requestDto.getUsername();
+        Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
@@ -56,8 +57,9 @@ public class UserService {
             password = passwordEncoder.encode(requestDto.getPassword2());
         }
 
-        User user = new User(nickname, password);
+        User user = new User(username, password);
         userRepository.save(user);
-
+        return user;
     }
+
 }
