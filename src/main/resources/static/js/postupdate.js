@@ -109,12 +109,12 @@ function submitEdit() {
         data: JSON.stringify(data),
         success: function(response) {
             alert('게시글이 수정되었습니다.');
-            window.location.replace("index.html");
+            window.location.href="/";
         }
     })
 }
 
 // 홈으로 버튼 클릭 시 페이지 전환
 function gotoHome() {
-    window.location.replace("index.html")
+    window.location.href="/";
 }

@@ -59,7 +59,7 @@ function detailHTML(id, title, username, modifiedAt, contents) {
 
 // 버튼 클릭 시 페이지 전환
 function gotoHome() {
-    window.location.replace("index.html")
+    window.location.href="/";
 }
 
 // 게시물 삭제하기
@@ -70,7 +70,7 @@ function deleteOne() {
         url: `/api/postings/${idx}`,
         success: function (response) {
             alert('게시글이 삭제되었습니다.');
-            window.location.replace("index.html");
+            window.location.href="/";
         }
     })
 }
