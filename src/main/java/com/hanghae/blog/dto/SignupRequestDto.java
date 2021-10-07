@@ -1,10 +1,7 @@
 package com.hanghae.blog.dto;
 
 import com.hanghae.blog.annotation.IfExcludeId;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -28,10 +25,18 @@ public class SignupRequestDto {
     @NotBlank(message = "비밀번호를 입력해주세요.")
     @Pattern(regexp = "(?=.*[a-zA-Z])(?=\\S+$).{4,20}",
             message = "비밀번호는 닉네임 값을 제외한 알파벳 대소문자를 이용하여 최소 4~20자 미만으로 입력해주세요.")
-    @IfExcludeId(message = "비밀번호에는 닉네임과 같은 값을 포함하실 수 없습니다.")
+//    @IfExcludeId(message = "비밀번호에는 닉네임과 같은 값을 포함하실 수 없습니다.")
     private String password;
 
     @NotBlank(message = "비밀번호 확인값을 입력해주세요.")
     // password와 password2가 같은지 확인하기
     private String password2;
+
+//    @Builder
+//    public SignupRequestDto(String nickname, String password, String password2) {
+////        this.id = id;
+//        this.nickname = nickname;
+//        this.password = password;
+//        this.password2 = password2;
+//    }
 }

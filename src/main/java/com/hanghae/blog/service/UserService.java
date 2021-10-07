@@ -41,8 +41,8 @@ public class UserService {
     // 회원가입 비즈니스 로직
     public void registerUser(SignupRequestDto requestDto) {
         String nickname = requestDto.getNickname();
-//        String password = requestDto.getPassword();
-//        String password2 = requestDto.getPassword2();
+        String password = requestDto.getPassword();
+        String password2 = requestDto.getPassword2();
 
         //nickname 중복 확인
         Optional<User> found = userRepository.findByNickname(nickname);
@@ -50,12 +50,11 @@ public class UserService {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
 
-        // password 일치 여부 확인
-
-        // password 암호화
-        String password = passwordEncoder.encode(requestDto.getPassword());
-
-        User user = new User(nickname, password);
+        // password 일치 여부 확인 & 암호화
+        if(password.equals(password2)) {
+            passwordEncoder.encode(requestDto.getPassword());
+        }
+        User user = new User(nickname, password, password2);
         userRepository.save(user);
 
     }
