@@ -2,7 +2,6 @@ package com.hanghae.blog.controller;
 
 import com.hanghae.blog.dto.SignupRequestDto;
 import com.hanghae.blog.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class UserController {
 
     // 회원가입을 위한 API -> 회원가입 버튼 클릭시 작동
     @GetMapping("/user/signup")
-    public String signup() {
+    public String signup(SignupRequestDto requestDto) {
         return "signup";
     }
 

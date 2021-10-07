@@ -19,19 +19,19 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String username;
+    private String nickname;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String password2;
+//    @Column(nullable = false)
+//    private String password2;
 
     // 인스턴스 생성시 빠뜨리면 안되는 멤버 변수들을 생성자를 통해 정의하여 인스턴스 생성시 해당 객체가
     // 생성자에 정의된 멤버 변수들을 가지고 있도록 하는 것
-    public User(String username, String password, String password2) {
-        this.username = username;
+    public User(String nickname, String password) {
+        this.nickname = nickname;
         this.password = password;
-        this.password2 = password2;
+//        this.password2 = password2;
     }
 }

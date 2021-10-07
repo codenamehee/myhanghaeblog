@@ -23,7 +23,7 @@ public class SignupRequestDto {
     @NotBlank(message = "닉네임을 입력해주세요.")
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{3,20}",
             message = "닉네임은 알파벳 대소문자와 숫자를 포함하여 최소 3자 ~ 20자 미만으로 입력해주세요.")
-    private String username;
+    private String nickname;
 
     @NotBlank(message = "비밀번호를 입력해주세요.")
     @Pattern(regexp = "(?=.*[a-zA-Z])(?=\\S+$).{4,20}",

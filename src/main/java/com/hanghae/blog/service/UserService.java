@@ -6,6 +6,7 @@ import com.hanghae.blog.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -18,11 +19,13 @@ import java.util.Optional;
 //@AllArgsConstructor
 public class UserService {
 
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     // 회원가입 시 유효성 체크
     public Map<String, String> validateHandling(Errors errors) {
@@ -37,20 +40,22 @@ public class UserService {
 
     // 회원가입 비즈니스 로직
     public void registerUser(SignupRequestDto requestDto) {
-        String username = requestDto.getUsername();
-        String password = requestDto.getPassword();
-        String password2 = requestDto.getPassword2();
+        String nickname = requestDto.getNickname();
+//        String password = requestDto.getPassword();
+//        String password2 = requestDto.getPassword2();
 
-        //username 중복 확인
-        Optional<User> found = userRepository.findByUsername(username);
+        //nickname 중복 확인
+        Optional<User> found = userRepository.findByNickname(nickname);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
 
         // password 일치 여부 확인
 
+        // password 암호화
+        String password = passwordEncoder.encode(requestDto.getPassword());
 
-        User user = new User(username, password, password2);
+        User user = new User(nickname, password);
         userRepository.save(user);
 
     }
