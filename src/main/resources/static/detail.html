@@ -16,6 +16,17 @@
     <script src="/js/detail.js"></script>
 
 
+    <style>
+        .area-write img {
+            cursor: pointer;
+            position: relative;
+            width: 22.2px;
+            height: 18.7px;
+            bottom: 50px;
+            left: 500px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -67,6 +78,27 @@
             <button class="btn btn-primary me-md-2" type="button" onclick="deleteOne()">삭제하기</button>
         </div>
     </div>
+
+    <div id="comment-write-area">
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="댓글을 입력해주세요" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">댓글을 입력해주세요.</label>
+        <img src="images/send.png" alt="" onclick="writeComment()">
+    </div>
+    </div>
+
+    <div id="comment-box">
+        <div class="card w-75">
+            <div class="card-body">
+                <h6 class="card-title">작성자명</h6>
+                <p class="card-title">수정날짜</p>
+                <p class="card-text">댓글 내용</p>
+<!--                <a href="#" class="btn btn-primary">수정</a>-->
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 

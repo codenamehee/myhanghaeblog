@@ -2,8 +2,8 @@ package com.hanghae.blog.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,22 +20,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    public void configure(WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/h2-console/**");
-    }
-
     // WebSecurityConfig에 내장되어 있는 메소드를 가져다 쓰되 내 마음대로 바꾸어 쓰겠다는 어노테이션
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.headers().frameOptions().disable();
         http.authorizeRequests()
                 //image폴더를 로그인 없이 허용
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/user/**").permitAll()
+                .antMatchers("/index/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/index/**").permitAll()
                 .antMatchers("/detail.html").permitAll()
                 .antMatchers("/js/**").permitAll()
@@ -43,7 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/**").permitAll()
                 .antMatchers("*").permitAll()
-                .antMatchers("/").permitAll()
                 //어떤 요청이든 '인증'
                 .anyRequest().authenticated()
                 .and()
@@ -63,5 +58,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .logoutUrl("/user/logout")
                     .permitAll();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
