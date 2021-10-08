@@ -96,3 +96,15 @@
     width: 400px;
     margin: 20px 550px;
 }
+
+.hide {
+    display: none;
+}
+
+.submit {
+    display: none;
+}
+
+.edit {
+    display: none;
+}

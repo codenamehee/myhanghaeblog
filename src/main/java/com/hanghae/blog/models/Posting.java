@@ -1,5 +1,6 @@
 package com.hanghae.blog.models;
 
+import com.hanghae.blog.dto.PostingRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

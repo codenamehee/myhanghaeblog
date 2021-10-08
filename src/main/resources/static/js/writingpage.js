@@ -72,7 +72,8 @@ function writePost() {
         data: JSON.stringify(postdata),
         success: function (response) {
             alert('성공적으로 등록되었습니다.');
-            window.location.replace("index.html")
+            // window.location.replace("index.html"); 로 하면 로그인했을 때 다시 리로드 안됨
+            window.location.href="/";
         }
     });
 

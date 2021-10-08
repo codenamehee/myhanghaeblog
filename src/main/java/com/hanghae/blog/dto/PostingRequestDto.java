@@ -1,4 +1,4 @@
-package com.hanghae.blog.models;
+package com.hanghae.blog.dto;
 
 import lombok.Getter;
 

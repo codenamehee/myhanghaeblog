@@ -1,5 +1,6 @@
-package com.hanghae.blog.models;
+package com.hanghae.blog.repository;
 
+import com.hanghae.blog.models.Posting;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 가입</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<!--    <link rel="stylesheet" href="css/index.css">-->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!--    Bootstrap JS-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"-->
+    <!--            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"-->
+    <!--            crossorigin="anonymous"></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--    <script src="../static/js/index.js"></script>-->
+
+    <script type="text/javascript">
+        function checkname() {
+            var nickname = $('#nickname').val();
+            $.ajax({
+                url:'/user/nameCheck',
+                type: 'post',
+                data: {nickname:nickname},
+                success: function() {
+                    console.log("변경될 내용");
+                },
+                error: function() {
+                    alert("에러입니다");
+                }
+            });
+        };
+    </script>
+    <style>
+        .signup-form {
+            /*background-size : contain;*/
+        }
+
+        .username-check {
+            color: #dc143c;
+            /*display: none;*/
+        }
+
+        .username-already {
+            color: #dc143c;
+            display: none;
+        }
+
+        .username-ok {
+            color: #1e90ff;
+            /*display: none;*/
+        }
+
+        .password1-check {
+            color: #dc143c;
+            /*display: none;*/
+        }
+
+        .password1-already {
+            color: #dc143c;
+            display: none;
+        }
+
+        .password1-ok {
+            color: #1e90ff;
+            /*display: none;*/
+        }
+
+        .password2-check {
+            color: #dc143c;
+            /*display: none;*/
+        }
+
+        .password2-already {
+            color: #dc143c;
+            display: none;
+        }
+
+        .password2-ok {
+            color: #1e90ff;
+            /*display: none;*/
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="background-header">
+
+</div>
+<div class="background-body">
+
+</div>
+
+<div class="wrap">
+    <div class="header">
+        <div class="inside-header">
+            <h2>Sign up page</h2>
+        </div>
+        <p>
+            회원 가입 페이지입니다.
+            <br>회원이 되시면 게시글에 댓글을 작성하실 수 있어요!!
+        </p>
+    </div>
+    <div class="contents-wrap">
+        <div class="title-box">
+            <h2>회원 가입</h2>
+        </div>
+
+        <form th:action="@{/user/signup}" method="post"  class = signup-form>
+            <div class="row mb-3">
+                <label for="username" class="col-sm-2 col-form-label">Nickname</label>
+                <div class="col-sm-10">
+                    <input name="username" th:value="${requestDto?.username}" type="text" class="form-control" id="username" required oninput="">
+<!--                    <span class = "nickname-check">알파벳 대소문자와 숫자로 구성된 최소 3자 이상의 닉네임을 입력해주세요.</span>-->
+                    <span th:text="${valid_username}" class = "username-ok">사용 가능한 닉네임입니다.</span>
+<!--                    <span class = "nickname-already">중복된 닉네임입니다.</span>-->
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="password1" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input name="password" th:value="${requestDto?.password}" type="password" class="form-control" id="password1">
+<!--                    <span class = "password1-check">닉네임과 다른 값으로 이루어진 최소 4자 이상의 패스워드를 입력해주세요.</span>-->
+                    <span th:text="${valid_password}" class = "password1-ok">사용 가능한 패스워드입니다.</span>
+<!--                    <span class = "password1-already">닉네임과 같은 값이 포함되어 있어요!</span>-->
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="password2" class="col-sm-2 col-form-label">Confirm the Password</label>
+                <div class="col-sm-10">
+                    <input name="password2" th:value="${requestDto?.password2}" type="password" class="form-control" id="password2">
+<!--                    <span class = "password2-check">입력하신 비밀번호를 다시 한번 입력해주세요.</span>-->
+                    <span th:text="${valid_password2}" class = "password2-ok">비밀번호가 일치합니다.</span>
+<!--                    <span class = "password2-already">비밀번호가 일치하지 않습니다!</span>-->
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" type="submit">회원가입</button>
+            </div>
+        </form>
+
+
+
+        <!--        append 되는 div-->
+        <div class="list-group" id="contents-list">
+
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+
+</html>
