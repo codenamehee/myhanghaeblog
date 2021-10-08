@@ -24,12 +24,6 @@ public class CommentService {
     // 댓글 작성
     @Transactional
     public Comment createComment(CommentRequestDto requestDto, Long userId) {
-        String commentCheck = requestDto.getComment();
-        if (commentCheck.contains("script") || commentCheck.contains("<") || commentCheck.contains(">")) {
-            Comment comment = new Comment(requestDto, userId, "xss 안돼요, 하지마세요ㅠㅠ");
-            commentRepository.save(comment);
-            return comment;
-        }
         Comment comment = new Comment(requestDto, userId);
         commentRepository.save(comment);
         return comment;

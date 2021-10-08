@@ -19,12 +19,6 @@ public class CommentController {
     private final CommentRepository commentRepository;
     private final CommentService commentService;
 
-//    @GetMapping("/api/comments")
-//    public List<Comment> getComment(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        Long userId = userDetails.getUser().getId();
-//        return commentService.getComment(userId);
-//    }
-
 
     // 댓글 조회 api
     @GetMapping("/api/comments")
